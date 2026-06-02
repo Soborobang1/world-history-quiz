@@ -1,0 +1,14 @@
+# 원본 강의노트 PDF (저작권·용량) — 공개 저장소에는 올리지 않음
+pdf_files/
+
+# 렌더링된 PDF 이미지(대용량, 앱 구동에 불필요)
+tools/img/
+
+# PDF에서 추출한 텍스트(강의 원자료 파생물)
+tools/extracted/
+tools/text/
+
+# OS/에디터 잡파일
+*Zone.Identifier
+.DS_Store
+Thumbs.db

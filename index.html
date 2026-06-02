@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#1f2a44" />
+  <title>세계사 마스터 문제은행</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1 onclick="goHome()">📚 세계사 마스터 문제은행</h1>
+    <p class="sub">9~15주차 강의노트 기반 · 시험 대비 5지선다</p>
+  </header>
+
+  <main id="app">
+    <!-- ============ 홈 화면 ============ -->
+    <section id="home" class="screen active">
+      <div class="stats-card" id="statsCard"></div>
+
+      <h2 class="section-title">풀이 모드 선택</h2>
+
+      <div class="mode-grid">
+        <button class="mode-card" onclick="startRandom()">
+          <span class="mode-ico">🎲</span>
+          <span class="mode-name">전체 랜덤</span>
+          <span class="mode-desc">전체 문제 풀에서 무작위 20문제</span>
+        </button>
+        <button class="mode-card" onclick="openFilter()">
+          <span class="mode-ico">🗂️</span>
+          <span class="mode-name">주제·주차별</span>
+          <span class="mode-desc">원하는 주차/단원만 골라 풀기</span>
+        </button>
+        <button class="mode-card" onclick="startWrong()">
+          <span class="mode-ico">🔁</span>
+          <span class="mode-name">오답 복습</span>
+          <span class="mode-desc" id="wrongCount">틀린 문제 다시 풀기</span>
+        </button>
+        <button class="mode-card" onclick="resumeSession()" id="resumeCard" style="display:none">
+          <span class="mode-ico">⏯️</span>
+          <span class="mode-name">이어풀기</span>
+          <span class="mode-desc" id="resumeDesc">중단된 세션 계속</span>
+        </button>
+      </div>
+
+      <div class="util-row">
+        <button class="util-btn" onclick="showTopicStats()">📊 단원별 정답률</button>
+        <button class="util-btn danger" onclick="resetAll()">🗑️ 기록 초기화</button>
+      </div>
+      <p class="pool-info" id="poolInfo"></p>
+    </section>
+
+    <!-- ============ 필터(주제 선택) 화면 ============ -->
+    <section id="filter" class="screen">
+      <h2 class="section-title">주차 선택</h2>
+      <div class="chip-row" id="weekChips"></div>
+      <h2 class="section-title">단원(카테고리) 선택</h2>
+      <div class="chip-row" id="catChips"></div>
+      <div class="filter-count" id="filterCount"></div>
+      <div class="btn-row">
+        <button class="primary-btn" onclick="startFiltered()">선택한 범위로 시작</button>
+        <button class="ghost-btn" onclick="goHome()">취소</button>
+      </div>
+    </section>
+
+    <!-- ============ 퀴즈 화면 ============ -->
+    <section id="quiz" class="screen">
+      <div class="quiz-top">
+        <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
+        <div class="quiz-meta">
+          <span id="qCounter">1 / 20</span>
+          <span id="qScore">정답 0</span>
+        </div>
+      </div>
+
+      <div class="q-tags" id="qTags"></div>
+      <div class="q-text" id="qText"></div>
+      <div class="choices" id="choices"></div>
+
+      <div class="feedback" id="feedback"></div>
+
+      <div class="btn-row">
+        <button class="primary-btn" id="submitBtn" onclick="submitAnswer()">제출</button>
+        <button class="primary-btn" id="nextBtn" onclick="nextQuestion()" style="display:none">다음 ▶</button>
+        <button class="ghost-btn" onclick="quitToHome()">그만하기</button>
+      </div>
+    </section>
+
+    <!-- ============ 결과 화면 ============ -->
+    <section id="result" class="screen">
+      <div class="result-hero" id="resultHero"></div>
+      <h2 class="section-title">문항 리뷰</h2>
+      <div class="review-list" id="reviewList"></div>
+      <div class="btn-row">
+        <button class="primary-btn" onclick="reviewWrongFromResult()" id="reviewWrongBtn">이번 오답만 다시 풀기</button>
+        <button class="ghost-btn" onclick="goHome()">홈으로</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <span id="footerInfo"></span>
+  </footer>
+
+  <script src="questions.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
